@@ -1,0 +1,38 @@
+###################
+#author fankejiang#
+###################
+#server config
+server:
+  port: 8020
+#spring config
+spring:
+  devtools:
+    restart:
+      enabled: true # 热部署
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/chess?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource # 这里是配置hikari连接池，以下都是hikari的配置信息
+    hikari:
+      read-only: false # 连接只读数据库时配置为true,保证安全
+      connection-timeout: 30000 # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException,缺省:30秒
+      idle-timeout: 600000 # 一个连接空闲状态的最大存在时长（毫秒），超时则被释放（retired），缺省:10分钟
+      max-lifetime: 1800000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟
+      maximum-pool-size: 15 # 连接池中允许的最大连接数,缺省值为10,最佳实践:连接数=((核心数*2)+磁盘数),eg:32核的机器，60多个连接就可以了
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    # check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    mode: LEGACYHTML5   #thymeleaf弱语法检测
+#mybatis-plus config
+mybatis-plus:
+  mapper-locations: classpath:/com/cmsy/test_demo/mapper/xml/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.cmsy.test_demo.entity
+
+

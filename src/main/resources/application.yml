@@ -1,0 +1,7 @@
+###################
+#author fankejiang#
+###################
+#server config
+spring:
+  profiles:
+    active: dev
